@@ -7,8 +7,9 @@
     "@aragon/os": "3.1.9",
     "@aragon/ui": "^0.11.0",
     "abi-decoder": "^1.2.0",
-    "react": "^16.3.2",
+    "react": "^16.4.2",
     "react-dom": "^16.3.2",
+    "react-flexbox-grid": "^2.1.2",
     "styled-components": "^3.2.6",
     "truffle-hdwallet-provider": "0.0.6",
     "web3": "^1.0.0-beta.35"
