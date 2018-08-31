@@ -2,36 +2,54 @@ import React from 'react'
 import {
   AragonApp,
   Button,
-  Text,
-
-  observe
+  AppBar,
+  observe,
+  SidePanel
 } from '@aragon/ui'
-import Aragon, { providers } from '@aragon/client'
-import styled from 'styled-components'
-
-const AppContainer = styled(AragonApp)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
+import Invoices from './components/Invoices';
+import NewPaymentRequest from './components/NewPaymentRequest';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      newPaymentRequestOpened: false
+    }
+  }
+
+  handleNewPaymentRequestOpen = () => {
+    this.setState({ newPaymentRequestOpened: true })
+  }
+
+  handleNewPaymentRequestClose = () => {
+    this.setState({ newPaymentRequestOpened: false })
+  }
+
   render () {
     return (
-      <AppContainer>
-        <div>
-          <ObservedCount observable={this.props.observable} />
-          <Button onClick={() => this.props.app.decrement(1)}>Decrement</Button>
-          <Button onClick={() => this.props.app.increment(1)}>Increment</Button>
-        </div>
-      </AppContainer>
+      <AragonApp className="app">
+        <AppBar
+          title="Invoices"
+          endContent={
+            <Button mode="strong" onClick={this.handleNewPaymentRequestOpen}>
+              Create Payment Request
+            </Button>
+          }
+        />
+        {/* <ObservedPayments observable={this.props.observable} /> */}
+        <Invoices />
+        <SidePanel
+          title="New Payment Request"
+          opened={this.state.newPaymentRequestOpened}
+          onClose={this.handleNewPaymentRequestClose}>
+            <NewPaymentRequest app={this.props.app} tokens={[{symbol: 'ETH'}]}/>
+        </SidePanel>
+      </AragonApp>
     )
   }
 }
 
-const ObservedCount = observe(
-  (state$) => state$,
-  { count: 0 }
-)(
-  ({ count }) => <Text.Block style={{ textAlign: 'center' }} size='xxlarge'>{count}</Text.Block>
-)
+// const ObservedPayments = observe(
+//   (state$) => state$,
+//   { rows: [{id: 'id1', payer: 'payer'}] }
+// )(InvoiceRow)

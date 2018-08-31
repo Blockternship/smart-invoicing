@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Aragon, { providers } from '@aragon/client'
-// import App from './App'
-import Arquest from './Arquest'
+import App from './App'
 
 class ConnectedApp extends React.Component {
   state = {
@@ -39,8 +38,7 @@ class ConnectedApp extends React.Component {
     window.parent.postMessage({ from: 'app', name, value }, '*')
   }
   render() {
-    // return <App {...this.state} />
-    return <Arquest {...this.state} />
+    return <App {...this.state} />
   }
 }
 ReactDOM.render(

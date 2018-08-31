@@ -30,7 +30,7 @@ contract InvoicingApp is AragonApp {
     // msg.value is the fee for creating the request
     bytes32 requestId = requestEthereum.createRequestAsPayee.value(msg.value)(
       _payeesIdAddress,
-      _payeesPaymentAddress,
+      _payeesPaymentAddress, // make this the finance app address
       _expectedAmounts,
       _payer,
       _payerRefundAddress,
