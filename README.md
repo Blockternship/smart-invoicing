@@ -7,10 +7,17 @@ Create smart invoices for your Decentralized Autonomous Organization (DAO). Buil
 
 ### Development
 ```shell
-ganache-cli -l 90000000 -p 8545 \
--m "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat"
+(start aragon environment)
+ganache-cli --db node_modules/@aragon/aragen/aragon-ganache -m "explain tackle mirror kit van hammer degree position ginger unfair soup bonus" -i 15 -l 100000000
 
+(deploy request network smart contracts)
 truffle compile
-truffle migrate --reset
+truffle migrate
+
+npm run start
+```
+
+### Test
+```shell
 truffle exec test/callCreateRequestAsPayee.js
 ```
