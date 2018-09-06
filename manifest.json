@@ -1,5 +1,5 @@
 {
-  "name": "Counter",
+  "name": "Invoices",
   "description": "An application for Aragon",
   "icons": [{
     "src": "/dist/images/icon.png",
