@@ -13,29 +13,68 @@ app.store(async (state, event) => {
   if (state === null) state = initialState
 
   switch (event.event) {
-    case 'Increment':
-      return { count: await getValue() }
-    case 'Decrement':
-      return { count: await getValue() }
     case 'RequestCreated':
       console.log('RequestCreated event emitted');
       console.log(event);
-
-    case 'DummyRequestCreated':
-      console.log('DummyRequestCreated event emitted');
-      console.log(event);
+      try {
+        rows = await getRequests()
+      } catch(e) {
+        console.log(e)
+      }
+      return {rows}
     default:
       return state
   }
 })
 
-function getValue() {
+function getRequestsCount() {
   // Get current value from the contract by calling the public getter
   return new Promise(resolve => {
     app
-      .call('value')
+      .call('getRequestsCount')
       .first()
-      .map(value => parseInt(value, 10))
+      // .map(value => parseInt(value, 10))
       .subscribe(resolve)
   })
 }
+
+function getRequestId(index) {
+  return new Promise(resolve => {
+    app
+      .call('requests', index)
+      .first()
+      // .map(value => parseInt(value, 10))
+      .subscribe(resolve)
+  })
+}
+
+function getRequest(id) {
+  return new Promise(resolve => {
+    app
+      .call('getRequest', id)
+      .first()
+      // .map(value => parseInt(value, 10))
+      .subscribe(resolve)
+  })
+}
+
+async function getRequests() {
+  let rows = []
+  const len = await getRequestsCount();
+  console.log('len', len)
+  for(let i = 0; i < len; i++) {
+    const id = await getRequestId(i);
+    const req = await getRequest(id);
+    console.log(i, req)
+    rows.push({
+      id,
+      payer: req.payer,
+      status: req.state,
+      amount: req.payeeExpectedAmount}
+    );
+  }
+  console.log('rows in worker', rows);
+  return rows;
+}
+
+module.exports = app;

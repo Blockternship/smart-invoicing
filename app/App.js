@@ -8,6 +8,8 @@ import {
 } from '@aragon/ui'
 import Invoices from './components/Invoices';
 import NewPaymentRequest from './components/NewPaymentRequest';
+import { Observable } from 'rxjs'
+
 // const AppContainer = styled(AragonApp)`
 //   display: flex;
 //   align-items: center;
@@ -41,7 +43,8 @@ export default class App extends React.Component {
           }
         />
         <ObservedPayments observable={this.props.observable} />
-        {/* <Invoices /> */}
+        // 0x8401Eb5ff34cc943f096A32EF3d5113FEbE8D4Eb
+        {/* <ObservedPayments observable={Observable.from([[{id: '1', payer: 'payer'}]])} /> */}
         <SidePanel
           title="New Payment Request"
           opened={this.state.newPaymentRequestOpened}
@@ -55,9 +58,5 @@ export default class App extends React.Component {
 
 const ObservedPayments = observe(
   (state$) => state$,
-  { rows: [{
-    id: '123',
-    payer: '0xb8d851486d1c953e31a44374aca11151d49b8bb3',
-    status: 'Pending',
-    amount: '0.45 ETH'}] }
+  {rows: []}
 )(Invoices)

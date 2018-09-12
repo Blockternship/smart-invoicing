@@ -13,12 +13,7 @@ import {
 export default class Invoices extends React.Component {
   render() {
     const tableRows = [];
-    // const _state = [{
-    //   id: '123',
-    //   payer: '0xb8d851486d1c953e31a44374aca11151d49b8bb3',
-    //   status: 'Pending',
-    //   amount: '0.45 ETH'}]
-    console.log('this.props', this.props);
+    console.log('Invoices props', this.props);
     this.props.rows.forEach(row => {
       tableRows.push(
         <InvoiceRow {...row} key={row.id} />

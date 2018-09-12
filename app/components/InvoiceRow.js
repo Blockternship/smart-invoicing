@@ -4,21 +4,27 @@ import styled from 'styled-components'
 import {
   TableRow,
   TableCell,
-  ContextMenu,
-  ContextMenuItem,
-  SafeLink,
-  formatHtmlDatetime,
-  theme,
 } from '@aragon/ui'
 
 export default class InvoiceRow extends React.Component {
+  getPaymentStatus(status) {
+    switch(status) {
+      case '0':
+        return 'Pending'
+      case '1':
+        return 'Accepted'
+      case '2':
+      return 'Canceled'
+    }
+  }
+
   render() {
     return (
       <TableRow>
         <NoWrapCell>{this.props.id}</NoWrapCell>
         <NoWrapCell>{this.props.payer}</NoWrapCell>
-        <NoWrapCell>{this.props.status}</NoWrapCell>
-        <NoWrapCell>{this.props.amount}</NoWrapCell>
+        <NoWrapCell>{this.getPaymentStatus(this.props.status)}</NoWrapCell>
+        <NoWrapCell>{web3.fromWei(this.props.amount, 'ether') + ' ETH'}</NoWrapCell>
       </TableRow>
     )
   }
