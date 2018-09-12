@@ -17,13 +17,11 @@ async function execute() {
   console.log('estimation', estimation);
 
   const createRequestAsPayee = await instance.createRequestAsPayee(
-    _payeesPaymentAddress,
     [expectedAmount],
     payer,
-    payer, // _payerRefundAddress
     data,
     {
-      from: '0x627306090abaB3A6e1400e9345bC60c78a8BEf57',
+      from: '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7', // account used to deploy
       value: estimation,
       // gas: 90000000 - 1,
       // gasPrice: web3.toWei('20', 'gwei')
@@ -34,6 +32,7 @@ async function execute() {
 
   // add RequestCore abi to decode Created event
   abiDecoder.addABI(RequestCore.abi);
+  abiDecoder.addABI(InvoicingApp.abi);
   const receipt = createRequestAsPayee.receipt;
   const decodedLogs = abiDecoder.decodeLogs(receipt.logs);
   console.dir(decodedLogs, {depth: null});
