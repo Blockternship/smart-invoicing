@@ -25,6 +25,10 @@ module.exports = async function(deployer) {
     console.log('Request network contracts deployed, checks complete');
     return deployer.deploy(InvoicingApp);
   })
+  .then(async () => {
+    const InvoicingAppInstance = await InvoicingApp.deployed();
+    return InvoicingAppInstance.setRequestEthereumAddress(RequestEthereum.address, RequestCore.address)
+  })
 };
 
 function createInstances() {
