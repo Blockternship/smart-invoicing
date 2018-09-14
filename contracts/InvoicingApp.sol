@@ -22,7 +22,8 @@ contract InvoicingApp is AragonApp {
   uint256 counter;
 
   event DummyRequestCreated(address _address, uint val);
-  event RequestCreated(bytes32 indexed requestId, uint indexed fee, address payer, int256 amount, string data);
+  event RequestCreated(bytes32 indexed requestId, uint indexed fee, address payee, address payer, int256 amount, string data);
+  event PaymentReceived(address indexed sender, uint256 amount);
 
   function InvoicingApp() public {
     // address _requestEthereum = 0x497d9c622bc27efd06d2632021fdc3cc5038e420;
@@ -32,13 +33,21 @@ contract InvoicingApp is AragonApp {
 
   function initialize() external onlyInit {
     initialized();
-    requestEthereum = RequestEthereum(0x4ee819385f6426af33fb10365c9b06d8c42d4684);
-    requestCore = RequestCore(0x0dc2584acd49d9552109e31ecf05e81d956bdd59);
+    requestEthereum = RequestEthereum(0x28b68ea37934c3e11835e6405d2f54dd56e873eb);
+    requestCore = RequestCore(0x548b9f0a280eadb4081d4d85923c1860e1719063);
   }
 
   function setRequestEthereumAddress(address _requestEthereum, address _requestCore) { // onlyDaoOwner?
     requestEthereum = RequestEthereum(_requestEthereum);
     requestCore = RequestCore(_requestCore);
+  }
+
+  // function transfer() public payable {
+  //   emit PaymentReceived(msg.sender, msg.value); 
+  // }
+
+  function() external payable {
+    emit PaymentReceived(msg.sender, msg.value); 
   }
 
   function createRequestAsPayee(
@@ -65,7 +74,7 @@ contract InvoicingApp is AragonApp {
     // PaymentRequest memory paymentRequest = PaymentRequest(
     //   _payer, _expectedAmounts[0], Status.Pending, _data);
     // requests[requestId] = paymentRequest;
-    emit RequestCreated(requestId, msg.value, _payer, _expectedAmounts[0], _data);
+    emit RequestCreated(requestId, msg.value, _payeesIdAddress[0], _payer, _expectedAmounts[0], _data);
 	}
 
   function getRequestsCount() public view returns(uint) {

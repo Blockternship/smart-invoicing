@@ -16,6 +16,7 @@ app.store(async (state, event) => {
     case 'RequestCreated':
       console.log('RequestCreated event emitted');
       console.log(event);
+      let rows;
       try {
         rows = await getRequests()
       } catch(e) {

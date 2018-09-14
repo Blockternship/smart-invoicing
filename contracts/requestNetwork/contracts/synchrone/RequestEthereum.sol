@@ -540,6 +540,7 @@ contract RequestEthereum is RequestEthereumCollect {
 		fundOrderInternal(addressToPay, _amount);
 	}
 
+	event Fund(address recipient, uint amount);
 	/*
 	 * @dev Function internal to manage fund mouvement
 	 * @dev We had to chose between a withdrawal pattern, a transfer pattern or a transfer+withdrawal pattern and chose the transfer pattern.
@@ -555,6 +556,7 @@ contract RequestEthereum is RequestEthereumCollect {
 		uint256 _amount)
 		internal
 	{
+		Fund(_recipient, _amount);
 		_recipient.transfer(_amount);
 	}
 

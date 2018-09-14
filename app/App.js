@@ -43,7 +43,7 @@ export default class App extends React.Component {
           }
         />
         <ObservedPayments observable={this.props.observable} />
-        // 0x8401Eb5ff34cc943f096A32EF3d5113FEbE8D4Eb
+        {/* 0x8401Eb5ff34cc943f096A32EF3d5113FEbE8D4Eb */}
         {/* <ObservedPayments observable={Observable.from([[{id: '1', payer: 'payer'}]])} /> */}
         <SidePanel
           title="New Payment Request"

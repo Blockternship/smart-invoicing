@@ -10,7 +10,7 @@ export default class InvoiceRow extends React.Component {
   getPaymentStatus(status) {
     switch(status) {
       case '0':
-        return 'Pending'
+        return 'Created'
       case '1':
         return 'Accepted'
       case '2':
