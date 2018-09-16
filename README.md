@@ -9,7 +9,7 @@ Create smart invoices for your Decentralized Autonomous Organization (DAO). Buil
 ### Development
 ```shell
 (start aragon environment)
-ganache-cli --db node_modules/@aragon/aragen/aragon-ganache -m "explain tackle mirror kit van hammer degree position ginger unfair soup bonus" -i 15 -l 100000000
+npm run ganache
 
 (deploy request network smart contracts)
 truffle compile

@@ -1,0 +1,28 @@
+ ❯ ["/Users/arpit/.nvm/versions/node/v8.11.3/bin/node","/Users/arpit/.nvm/versions/node/v8.11.3/bin/aragon","apm","publish","InvoicingApp","--network","rinkeby","--apm.ens-registry","0xfbae32d1cde62858bc45f51efc8cc4fa1415447e","--http","localhost:8001","--http-served-from","./dist"]
+[?25l[19:28:05] Preflight checks for publishing to APM [started]
+[19:28:05] Check version is valid [started]
+[19:28:05] Check version is valid [completed]
+[19:28:05] Checking version bump [started]
+[19:28:11] Checking version bump [completed]
+[19:28:11] Preflight checks for publishing to APM [completed]
+[19:28:11] Deploy contract [started]
+[19:28:11] Compile contracts [started]
+[19:28:18] Compile contracts [completed]
+[19:28:18] Deploy 'InvoicingApp' to network [started]
+[19:28:18] → Deploying 'InvoicingApp' to network
+[19:28:43] Deploy 'InvoicingApp' to network [completed]
+[19:28:43] Deploy contract [completed]
+[19:28:43] Determine contract address for version [started]
+[19:28:43] Determine contract address for version [completed]
+[19:28:43] Check for --http-served-from argument and copy manifest.json to destination [started]
+[19:28:43] Check for --http-served-from argument and copy manifest.json to destination [completed]
+[19:28:43] Generate application artifact [started]
+[19:28:43] Generate application artifact [completed]
+[19:28:43] Publish arquest-dev.open.aragonpm.eth [started]
+[19:28:43] → Generating transaction and waiting for confirmation
+[19:28:48] Publish arquest-dev.open.aragonpm.eth [failed]
+[19:28:48] → Error: Transaction would not succeed ("Returned values aren't valid, did it run Out of Gas?")
+This is usually one of these reasons, maybe:
+          - An existing version of this package was already deployed, try running 'aragon version' to bump it
+          - You are deploying a version higher than the one in the chain
+[?25h[?25h
