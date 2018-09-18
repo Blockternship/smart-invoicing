@@ -15,6 +15,10 @@ contract InvoicingApp is AragonApp {
   //   string data;
   // }
 
+  /// ACL
+    bytes32 constant public INCREMENT_ROLE = keccak256("INCREMENT_ROLE");
+    bytes32 constant public DECREMENT_ROLE = keccak256("DECREMENT_ROLE");
+
   RequestEthereum public requestEthereum;
   RequestCore public requestCore;
   // mapping(bytes32 => PaymentRequest) public requests;
@@ -32,8 +36,8 @@ contract InvoicingApp is AragonApp {
 
   function initialize() external onlyInit {
     initialized();
-    requestEthereum = RequestEthereum(0x093d3c551bc022bb1a311bf5d9dab02b4e575472);
-    requestCore = RequestCore(0x609d79ad1935bb9aece827b8ec111e87122928a7);
+    requestEthereum = RequestEthereum(0xf2e08e3deb03d02d63a586296b2c691e6e49c973);
+    requestCore = RequestCore(0x677b89ac909215b7e6b6ba46e229ebce08d25e79);
   }
 
   function setRequestEthereumAddress(address _requestEthereum, address _requestCore) { // onlyDaoOwner?

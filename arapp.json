@@ -1,6 +1,6 @@
 {
-  "appName": "arquest-dev.open.aragonpm.eth",
-  "version": "1.1.0",
+  "appName": "arquest-dev.aragonpm.eth",
+  "version": "1.0.0",
   "roles": [
     {
       "name": "Increment the counter",
