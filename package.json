@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "@aragon/apps-token-manager": "^2.0.0-alpha.1",
-    "@aragon/apps-voting": "^2.0.0-alpha.1",
+    "@aragon/apps-token-manager": "^2.0.0-beta.2",
     "@aragon/client": "^1.0.0-beta.8",
     "@aragon/os": "^4.0.0-beta.1",
     "@aragon/ui": "^0.18.1",
@@ -14,7 +13,7 @@
     "react-flexbox-grid": "^2.1.2",
     "styled-components": "^3.4.6",
     "truffle-hdwallet-provider": "0.0.6",
-    "web3": "^1.0.0-beta.26"
+    "web3": "^1.0.0-beta.36"
   },
   "devDependencies": {
     "@aragon/aragen": "^2.0.0-beta.1",
@@ -27,6 +26,7 @@
     "truffle": "^4.1.14"
   },
   "scripts": {
+    "which": "which aragon",
     "ganache": "ganache-cli --db node_modules/@aragon/aragen/aragon-ganache -m \"explain tackle mirror kit van hammer degree position ginger unfair soup bonus\" -i 15 -l 100000000",
     "start": "aragon run --app-init initialize",
     "start:ui": "./node_modules/parcel-bundler/bin/cli.js app/index.html",
