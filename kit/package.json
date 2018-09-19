@@ -1,0 +1,20 @@
+{
+  "name": "kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "publish:kit": "aragon apm publish $(npm run deploy:kit | tail -n 1)",
+    "deploy:kit": "aragon contracts compile && aragon contracts exec scripts/deploy.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aragon/apps-token-manager": "^2.0.0-beta.2",
+    "@aragon/apps-voting": "^2.0.0-beta.2",
+    "@aragon/os": "^4.0.0-beta.2"
+  }
+}
