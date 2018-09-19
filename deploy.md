@@ -1,6 +1,32 @@
 # Deploying an Aragon App
+## A. Deploying from kit
+#### development
+1. Publish app
+`aragon apm publish InvoicingApp --http localhost:8001 --http-served-from ./dist`
 
-## development
+2. Publish kit
+```shell
+cd kit
+npm i
+
+(check compilation)
+truffle compile
+
+(bump version)
+aragon apm version major
+
+npm run publish:kit
+```
+
+3. Spin up DAO
+**Edit** ./node_modules/@aragon/cli/dist/commands/dao_cmds/new.js
+to replace `abi = ctx.repo.abi || BARE_KIT_ABI` with the kit abi. (Todo: Work on enhancement and send PR)
+```shell
+./node_modules/@aragon/cli/dist/cli.js dao new arquest-kit-dev --fn "newInstance"
+```
+
+## B. Install app to existing DAO
+#### development
 ```
 npm run ganache
 ipfs daemon
@@ -87,4 +113,4 @@ I understand serving from `localhost:8001` doesn't make sense. Just wanted a fas
 Fails with `Error: Transaction would not succeed ("Returned values aren't valid, did it run Out of Gas?")` See [apm.js](https://github.com/aragon/apm.js/blob/1bd8eaad5a3f2cf7ac2585e6800120993a2c8618/src/index.js#L298)
 See [output_out_of_gas](./output_out_of_gas)
 
-[This](https://github.com/ethereum/web3.js/issues/1916) issue suggested that it could be a problem with recent `beta` versions of `web3` so I downgraded to `web3@1.0.0-beta.10` and ran into `please check your gas limit`. See [output_check_gas_limit](./output_check_gas_limit) 
+[This](https://github.com/ethereum/web3.js/issues/1916) issue suggested that it could be a problem with recent `beta` versions of `web3` so I downgraded to `web3@1.0.0-beta.10` and ran into `please check your gas limit`. See [output_check_gas_limit](./output_check_gas_limit)

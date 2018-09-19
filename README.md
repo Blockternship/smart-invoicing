@@ -19,8 +19,8 @@ truffle migrate --reset
 npm run start:app
 
 npm run start:aragon:http
-(Or create DAO from kit)
-npm run start:aragon:http:kit
+Or to create DAO from kit see [deploy notes](./deploy.md)
+~~npm run start:aragon:http:kit~~
 ```
 
 ### Test
