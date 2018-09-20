@@ -1,6 +1,6 @@
 {
-  "appName": "arquest-dev.aragonpm.eth",
-  "version": "4.0.0",
+  "appName": "arquest-dev-2.open.aragonpm.eth",
+  "version": "1.0.0",
   "roles": [
     {
       "name": "Create a payment request",

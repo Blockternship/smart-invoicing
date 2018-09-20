@@ -47,7 +47,8 @@ contract Kit is KitBase {
     uint256 constant PCT = 10 ** 16;
     address constant ANY_ENTITY = address(-1);
 
-    function Kit(ENS ens) KitBase(DAOFactory(0), ens) {
+    // function Kit(ENS ens) KitBase(DAOFactory(0), ens) {
+    function Kit(DAOFactory _fac, ENS ens) KitBase(_fac, ens) {
         tokenFactory = new MiniMeTokenFactory();
     }
 
@@ -57,7 +58,8 @@ contract Kit is KitBase {
         acl.createPermission(this, dao, dao.APP_MANAGER_ROLE(), this);
 
         address root = msg.sender;
-        bytes32 appId = apmNamehash("arquest-dev");
+        // bytes32 appId = apmNamehash("arquest-dev");
+        bytes32 appId = apmNamehash("arquest-dev-2.open.aragonpm.eth");
         // bytes32 votingAppId = apmNamehash("voting");
         // bytes32 financeAppId = apmNamehash("finance");
         // bytes32 vaultAppId = apmNamehash("vault");
