@@ -1,6 +1,6 @@
 {
   "appName": "arquest-kit-dev.aragonpm.eth",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "roles": [],
   "path": "contracts/Kit.sol"
 }

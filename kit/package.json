@@ -13,7 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aragon/apps-finance": "^2.0.0-beta.2",
     "@aragon/apps-token-manager": "^2.0.0-beta.2",
+    "@aragon/apps-vault": "^3.0.0-beta.2",
     "@aragon/apps-voting": "^2.0.0-beta.2",
     "@aragon/os": "^4.0.0-beta.2"
   }

@@ -1,15 +1,10 @@
 {
   "appName": "arquest-dev.aragonpm.eth",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "roles": [
     {
-      "name": "Increment the counter",
-      "id": "INCREMENT_ROLE",
-      "params": []
-    },
-    {
-      "name": "Decrement the counter",
-      "id": "DECREMENT_ROLE",
+      "name": "Create a payment request",
+      "id": "CREATE_PAYMENT_ROLE",
       "params": []
     }
   ],

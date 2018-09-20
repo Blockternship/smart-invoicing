@@ -18,7 +18,7 @@ truffle migrate --reset
 -- hardcode the RequestEthereum contract address in InvoicingApp.sol :p
 npm run start:app
 
-npm run start:aragon:http
+npm run start:aragon:http -- --app-init-args "0xbcfddf0fb6a918cb1e5040b9f0f529cbb930e23a" "0x97d0cab15baac862aa32679562e02200d2abe0fa"
 Or to create DAO from kit see [deploy notes](./README_deploy.md)
 ~~npm run start:aragon:http:kit~~
 ```

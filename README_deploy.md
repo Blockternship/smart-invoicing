@@ -5,7 +5,7 @@
 ```shell
 (Serve app)
 npm run start:app
-aragon apm publish InvoicingApp --http localhost:8001 --http-served-from ./dist`
+aragon apm publish InvoicingApp --http localhost:8001 --http-served-from ./dist
 ```
 
 2. Publish kit
@@ -23,11 +23,19 @@ npm run publish:kit
 ```
 
 3. Spin up DAO
-**Edit** ./node_modules/@aragon/cli/dist/commands/dao_cmds/new.js
+**Edit** `./node_modules/@aragon/cli/dist/commands/dao_cmds/new.js`
 to replace `abi = ctx.repo.abi || BARE_KIT_ABI` with the kit abi. (Todo: Work on enhancement and send PR)
 ```shell
-./node_modules/@aragon/cli/dist/cli.js dao new arquest-kit-dev --fn "newInstance"
+./node_modules/@aragon/cli/dist/cli.js dao new arquest-kit-dev --fn "newInstance" --fn-args <requestCoreContractAddress> <requestEthereumContractAddress>
+./node_modules/@aragon/cli/dist/cli.js dao new arquest-kit-dev --fn "newInstance" --fn-args "0xbcfddf0fb6a918cb1e5040b9f0f529cbb930e23a" "0x97d0cab15baac862aa32679562e02200d2abe0fa"
 ```
+
+4. Start webserver
+```shell
+aragon run --app-init-args 0xbcfddf0fb6a918cb1e5040b9f0f529cbb930e23a 0x97d0cab15baac862aa32679562e02200d2abe0fa --http localhost:8001 --http-served-from ./dist
+```
+
+5. Replace with DAO address created in 3.
 
 ## B. Install app to existing DAO
 #### development

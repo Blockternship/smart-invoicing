@@ -7,7 +7,8 @@ import "@aragon/os/contracts/lib/ens/PublicResolver.sol";
 import "@aragon/os/contracts/apm/APMNamehash.sol";
 
 import "@aragon/apps-voting/contracts/Voting.sol";
-// import "@aragon/apps-finance/contracts/Finance.sol";
+import "@aragon/apps-vault/contracts/Vault.sol";
+import "@aragon/apps-finance/contracts/Finance.sol";
 import "@aragon/apps-token-manager/contracts/TokenManager.sol";
 import "@aragon/apps-shared-minime/contracts/MiniMeToken.sol";
 
@@ -50,7 +51,7 @@ contract Kit is KitBase {
         tokenFactory = new MiniMeTokenFactory();
     }
 
-    function newInstance() {
+    function newInstance(address requestCore, address requestEthereum) {
         Kernel dao = fac.newDAO(this);
         ACL acl = ACL(dao.acl());
         acl.createPermission(this, dao, dao.APP_MANAGER_ROLE(), this);
@@ -58,19 +59,24 @@ contract Kit is KitBase {
         address root = msg.sender;
         bytes32 appId = apmNamehash("arquest-dev");
         // bytes32 votingAppId = apmNamehash("voting");
-        // // bytes32 financeAppId = apmNamehash("finance");
+        // bytes32 financeAppId = apmNamehash("finance");
+        // bytes32 vaultAppId = apmNamehash("vault");
         // bytes32 tokenManagerAppId = apmNamehash("token-manager");
 
         InvoicingApp app = InvoicingApp(dao.newAppInstance(appId, latestVersionAppBase(appId)));
         // Voting voting = Voting(dao.newAppInstance(votingAppId, latestVersionAppBase(votingAppId)));
-        // Finance finance = Finance(dao.newAppInstance(financeAppId, latestVersionAppBase(financeAppId)));
         // TokenManager tokenManager = TokenManager(dao.newAppInstance(tokenManagerAppId, latestVersionAppBase(tokenManagerAppId)));
+        // Finance finance = Finance(dao.newAppInstance(financeAppId, latestVersionAppBase(financeAppId)));
+        // Vault vault = Vault(dao.newAppInstance(vaultAppId, latestVersionAppBase(vaultAppId)));
 
         // MiniMeToken token = tokenFactory.createCloneToken(MiniMeToken(0), 0, "App token", 0, "APP", true);
         // token.changeController(tokenManager);
 
         // // Initialize apps
-        app.initialize();
+        app.initialize(requestCore, requestEthereum);
+        // Vault vaultBase = Vault(latestVersionAppBase(vaultAppId));
+        // vault.initialize(vaultBase.erc20ConnectorBase(), vaultBase.ethConnectorBase()); // init with trusted connectors
+        // finance.initialize(IVaultConnector(vault), uint64(-1) - uint64(now)); // yuge period
         // tokenManager.initialize(token, true, 0);
         // voting.initialize(token, 50 * PCT, 20 * PCT, 1 days);
 
@@ -80,9 +86,9 @@ contract Kit is KitBase {
         // acl.createPermission(ANY_ENTITY, voting, voting.CREATE_VOTES_ROLE(), root);
 
         // acl.createPermission(voting, app, app.INCREMENT_ROLE(), voting);
-        acl.createPermission(ANY_ENTITY, app, app.INCREMENT_ROLE(), root);
-        acl.createPermission(ANY_ENTITY, app, app.DECREMENT_ROLE(), root);
+        acl.createPermission(ANY_ENTITY, app, app.CREATE_PAYMENT_ROLE(), root);
         // acl.grantPermission(voting, tokenManager, tokenManager.MINT_ROLE());
+        // acl.createPermission(finance, vault, vault.TRANSFER_ROLE(), root);
 
         // Clean up permissions
         acl.grantPermission(root, dao, dao.APP_MANAGER_ROLE());

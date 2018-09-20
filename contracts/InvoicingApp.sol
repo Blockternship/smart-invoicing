@@ -5,49 +5,29 @@ import {RequestEthereum} from "./requestNetwork/contracts/synchrone/RequestEther
 import {RequestCore} from "./requestNetwork/contracts/core/RequestCore.sol";
 
 contract InvoicingApp is AragonApp {
-  // enum State {Pending, Fulfilled}
-  // enum Status {Fulfilled, Pending}
-
-  // struct PaymentRequest {
-  //   address payer;
-  //   int256 amount;
-  //   Status status;
-  //   string data;
-  // }
-
-  /// ACL
-    bytes32 constant public INCREMENT_ROLE = keccak256("INCREMENT_ROLE");
-    bytes32 constant public DECREMENT_ROLE = keccak256("DECREMENT_ROLE");
+  // ACL
+  bytes32 constant public CREATE_PAYMENT_ROLE = keccak256("CREATE_PAYMENT_ROLE");
 
   RequestEthereum public requestEthereum;
   RequestCore public requestCore;
-  // mapping(bytes32 => PaymentRequest) public requests;
   bytes32[] public requests;
   uint256 counter;
 
   event DummyRequestCreated(address _address, uint val);
   event RequestCreated(bytes32 indexed requestId, uint indexed fee, address payer, int256 amount, string data);
 
-  function InvoicingApp() public {
-    // address _requestEthereum = 0x497d9c622bc27efd06d2632021fdc3cc5038e420;
-    // requestEthereumAddress = _requestEthereum;
-    // requestEthereum = RequestEthereum(_requestEthereum);
-  }
-
-  function initialize() external onlyInit {
+  function initialize(address _requestCore, address _requestEthereum) external onlyInit {
     initialized();
-    requestEthereum = RequestEthereum(0xf2e08e3deb03d02d63a586296b2c691e6e49c973);
-    requestCore = RequestCore(0x677b89ac909215b7e6b6ba46e229ebce08d25e79);
+    requestCore = RequestCore(_requestCore);
+    requestEthereum = RequestEthereum(_requestEthereum);
+    // requestEthereum = RequestEthereum(0xf2e08e3deb03d02d63a586296b2c691e6e49c973);
+    // requestCore = RequestCore(0x677b89ac909215b7e6b6ba46e229ebce08d25e79);
   }
 
   function setRequestEthereumAddress(address _requestEthereum, address _requestCore) { // onlyDaoOwner?
     requestEthereum = RequestEthereum(_requestEthereum);
     requestCore = RequestCore(_requestCore);
   }
-
-  // function() external payable {
-  //   // emit PaymentReceived(msg.sender, msg.value); 
-  // }
 
   function createRequestAsPayee(
 		int256[] 	_expectedAmounts,
@@ -86,10 +66,6 @@ contract InvoicingApp is AragonApp {
   returns(address payer, address currencyContract, RequestCore.State state, address payeeAddr, int256 payeeExpectedAmount, int256 payeeBalance) {
     return requestCore.getRequest(_requestId);
   }
-
-  // function dummyCreateRequestAsPayee() {
-  //   DummyRequestCreated(requestEthereumAddress, 5);
-  // }
 
   function collectEstimation(int256 _expectedAmount)
     public
