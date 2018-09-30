@@ -42,13 +42,16 @@ aragon run --app-init-args 0xbcfddf0fb6a918cb1e5040b9f0f529cbb930e23a 0x97d0cab1
 aragon apm publish InvoicingApp --network rinkeby --apm.ens-registry "0xfbae32d1cde62858bc45f51efc8cc4fa1415447e" --http localhost:8001 --http-served-from ./dist
 Publish arquest-dev-2.open.aragonpm.eth [completed]
 
+cd kit
 aragon apm version major
+✔ New version: 3.0.0
 truffle exec scripts/deploy.js --network rinkeby
-0xe296d9b0c99eb271a56b4105bddbc37b348d3fa1
+0xa7ee7a38c0f8af8511b45629a9827f76dc4b2674
 
-aragon apm publish 0xa1e228455ac62858a9ed5ee000635bdfd00f601f --network rinkeby --apm.ens-registry "0xfbae32d1cde62858bc45f51efc8cc4fa1415447e"
+aragon apm publish 0xa7ee7a38c0f8af8511b45629a9827f76dc4b2674 --network rinkeby --apm.ens-registry "0xfbae32d1cde62858bc45f51efc8cc4fa1415447e"
 ✔ Publish arquest-kit-dev-2.open.aragonpm.eth
 
+cd ..
 ./node_modules/@aragon/cli/dist/cli.js dao new arquest-kit-dev-2.open.aragonpm.eth --fn "newInstance" --fn-args "0x8fc2e7f2498f1d06461ee2d547002611b801202b" "0xd88ab9b1691340e04a5bbf78529c11d592d35f57" --network rinkeby --apm.ens-registry "0xfbae32d1cde62858bc45f51efc8cc4fa1415447e"
 ```
 
