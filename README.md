@@ -27,3 +27,9 @@ Or to create DAO from kit see [deploy notes](./README_deploy.md)
 ```shell
 truffle exec test/callCreateRequestAsPayee.js
 ```
+
+### Request UI
+```shell
+cd Request_App
+npm i
+```

@@ -32,7 +32,7 @@ to replace `abi = ctx.repo.abi || BARE_KIT_ABI` with the kit abi. (Todo: Work on
 
 4. Start webserver
 ```shell
-aragon run --app-init-args 0xbcfddf0fb6a918cb1e5040b9f0f529cbb930e23a 0x97d0cab15baac862aa32679562e02200d2abe0fa --http localhost:8001 --http-served-from ./dist
+aragon run --app-init-args 0x24fb684237f8b1835d2e85ce35b729002a88e526 0x2b6953ba77dcdc967a2ac2e8d3d8dc34e015a996 --http localhost:8001 --http-served-from ./dist
 ```
 
 5. Replace with DAO address created in 3.

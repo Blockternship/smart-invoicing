@@ -59,7 +59,7 @@ contract Kit is KitBase {
 
         address root = msg.sender;
         // bytes32 appId = apmNamehash("arquest-dev");
-        bytes32 appId = apmNamehash("arquest-dev-2.open.aragonpm.eth");
+        bytes32 appId = apmNamehash("arquest-dev-2.aragonpm.eth");
         // bytes32 votingAppId = apmNamehash("voting");
         // bytes32 financeAppId = apmNamehash("finance");
         // bytes32 vaultAppId = apmNamehash("vault");
